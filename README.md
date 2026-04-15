@@ -39,3 +39,12 @@ A AGL Company não apenas desenvolve tecnologia — ela projeta soluções que e
 🧪 Filosofia
 
 Acreditamos que tecnologia não precisa ser complicada. Nosso objetivo é tornar o complexo invisível e o resultado evidente.
+
+---
+
+## 👤 Desenvolvedor
+
+**Vinicius Ferreira (VotioYou)**
+- 🐙 GitHub: [VotioYou](https://github.com/VotioYou)
+- 📧 Email: [viniciusferreiradeoliveira3@gmail.com](mailto:viniciusferreiradeoliveira3@gmail.com)
+
