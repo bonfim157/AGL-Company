@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="AGL Company — Soluções em Tecnologia e Inteligência Artificial para empresas que querem liderar o futuro." />
+  <meta name="keywords" content="AGL Company, inteligência artificial, tecnologia, IA, automação, software, inovação" />
+  <meta property="og:title" content="AGL Company — Tecnologia & IA" />
+  <meta property="og:description"
+    content="Transformamos dados em decisões. Soluções de IA que impulsionam o seu negócio." />
+  <meta property="og:type" content="website" />
+  <title>AGL Company — Tecnologia &amp; Inteligência Artificial</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ===================================================
+       CURSOR GLOW (efeito interativo com mouse)
+  =================================================== -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===================================================
+       CANVAS DE PARTÍCULAS (fundo animado)
+  =================================================== -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <!-- ===================================================
+       HEADER / NAVEGAÇÃO
+  =================================================== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <!-- ===== LOGO AQUI ===== -->
+      <a href="#home" class="nav__logo" id="navLogo" aria-label="AGL Company - Ir para o início">
+        <span class="logo__icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none" />
+            <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="url(#logoGrad)" opacity="0.8" />
+            <circle cx="16" cy="15" r="3" fill="#fff" />
+            <defs>
+              <linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#6C63FF" />
+                <stop offset="100%" stop-color="#00D4FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo__text">AGL<span class="logo__dot">.</span></span>
+      </a>
+
+      <!-- Menu principal -->
+      <ul class="nav__menu" id="navMenu" role="menubar">
+        <li role="none"><a href="#home" class="nav__link active" role="menuitem" id="navHome">Início</a></li>
+        <li role="none"><a href="#about" class="nav__link" role="menuitem" id="navAbout">Time</a></li>
+        <li role="none"><a href="#services" class="nav__link" role="menuitem" id="navServices">Soluções</a></li>
+        <li role="none"><a href="#tech" class="nav__link" role="menuitem" id="navTech">Tecnologias</a></li>
+        <li role="none"><a href="#plans" class="nav__link" role="menuitem" id="navPlans">Planos</a></li>
+        <li role="none"><a href="#contact" class="nav__link" role="menuitem" id="navContact">Contato</a></li>
+      </ul>
+
+      <!-- Ações do header -->
+      <div class="nav__actions">
+        <!-- Botões pré-login -->
+        <div class="nav__auth-btns" id="navAuthBtns">
+          <button class="btn btn--outline btn--sm" id="btnLoginOpen" aria-label="Acessar área do cliente">
+            Entrar
+          </button>
+          <button class="btn btn--primary btn--sm" id="navCTA">
+            Começar Agora
+          </button>
+        </div>
+
+        <!-- Usuário logado (oculto até o login) -->
+        <div class="nav__user" id="navUser" hidden>
+          <div class="nav__user-avatar" id="navUserAvatar" aria-hidden="true"></div>
+          <span class="nav__user-name" id="navUserName"></span>
+          <button class="nav__user-logout" id="navLogout" aria-label="Sair da conta" title="Sair">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Hamburguer para mobile -->
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"
+          aria-controls="navMenu">
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================================================
+       SEÇÃO HERO
+  =================================================== -->
+  <section class="hero" id="home" aria-label="Apresentação principal">
+    <div class="hero__grid-lines" aria-hidden="true"></div>
+
+    <div class="container hero__container">
+      <!-- Badge de destaque -->
+      <div class="hero__badge reveal-up" data-delay="0">
+        <span class="badge__dot" aria-hidden="true"></span>
+        IA de última geração
+      </div>
+
+      <!-- Título principal -->
+      <h1 class="hero__title reveal-up" data-delay="100">
+        Transformamos dados<br />
+        em <span class="text--gradient">decisões inteligentes</span>
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="hero__subtitle reveal-up" data-delay="200">
+        A AGL Company desenvolve soluções de IA que automatizam processos,<br />
+        geram insights e aceleram o crescimento do seu negócio.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero__actions reveal-up" data-delay="300">
+        <a href="#contact" class="btn btn--primary btn--lg" id="heroCtaPrimary">
+          <span>Agendar Demonstração</span>
+          <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="#services" class="btn btn--ghost btn--lg" id="heroCtaSecondary">
+          Ver Soluções
+        </a>
+      </div>
+
+      <!-- Métricas -->
+      <div class="hero__stats reveal-up" data-delay="400">
+        <div class="stat">
+          <span class="stat__number" data-count="98">0</span><span class="stat__symbol">%</span>
+          <span class="stat__label">Satisfação dos clientes</span>
+        </div>
+        <div class="stat__divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat__number" data-count="200">0</span><span class="stat__symbol">+</span>
+          <span class="stat__label">Projetos entregues</span>
+        </div>
+        <div class="stat__divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat__number" data-count="50">0</span><span class="stat__symbol">+</span>
+          <span class="stat__label">Empresas atendidas</span>
+        </div>
+        <div class="stat__divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat__number" data-count="5">0</span><span class="stat__symbol">x</span>
+          <span class="stat__label">Retorno médio sobre investimento</span>
+        </div>
+      </div>
+
+      <!-- ===== IMAGEM HERO (SUBSTITUIR AQUI) ===== -->
+      <!-- Substituir o bloco abaixo por uma imagem real: <img src="assets/hero-image.webp" alt="Painel de IA da AGL Company" class="hero__image"> -->
+      <div class="hero__visual reveal-up" data-delay="250" aria-hidden="true">
+        <div class="hero__mockup">
+          <div class="mockup__header">
+            <div class="mockup__dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="mockup__title">AGL Intelligence Dashboard</span>
+          </div>
+          <div class="mockup__body">
+            <div class="mockup__chart">
+              <div class="chart__bar" style="--h:60%"></div>
+              <div class="chart__bar" style="--h:80%"></div>
+              <div class="chart__bar" style="--h:45%"></div>
+              <div class="chart__bar" style="--h:90%"></div>
+              <div class="chart__bar" style="--h:70%"></div>
+              <div class="chart__bar" style="--h:95%"></div>
+              <div class="chart__bar" style="--h:55%"></div>
+              <div class="chart__bar" style="--h:85%"></div>
+            </div>
+            <div class="mockup__metrics">
+              <div class="metric">
+                <div class="metric__icon metric__icon--green" aria-hidden="true">▲</div>
+                <div>
+                  <p class="metric__value">+34.2%</p>
+                  <p class="metric__label">Eficiência</p>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric__icon metric__icon--blue" aria-hidden="true">◈</div>
+                <div>
+                  <p class="metric__value">99.8%</p>
+                  <p class="metric__label">Precisão do modelo</p>
+                </div>
+              </div>
+            </div>
+            <div class="mockup__ai-badge">
+              <span class="ai-badge__pulse" aria-hidden="true"></span>
+              IA processando...
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===== FIM IMAGEM HERO ===== -->
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span>Rolar</span>
+      <div class="scroll-hint__line"></div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       FAIXA DE LOGOS / PARCEIROS
+  =================================================== -->
+  <section class="partners" aria-label="Tecnologias e parceiros">
+    <div class="container">
+      <p class="partners__label">Tecnologias que utilizamos</p>
+      <div class="partners__track" aria-hidden="true">
+        <div class="partners__inner">
+          <span class="partner-item">TensorFlow</span>
+          <span class="partner-item">PyTorch</span>
+          <span class="partner-item">OpenAI</span>
+          <span class="partner-item">Google Cloud</span>
+          <span class="partner-item">AWS</span>
+          <span class="partner-item">Azure AI</span>
+          <span class="partner-item">Kubernetes</span>
+          <span class="partner-item">Docker</span>
+          <span class="partner-item">Python</span>
+          <span class="partner-item">Node.js</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="partner-item" aria-hidden="true">TensorFlow</span>
+          <span class="partner-item" aria-hidden="true">PyTorch</span>
+          <span class="partner-item" aria-hidden="true">OpenAI</span>
+          <span class="partner-item" aria-hidden="true">Google Cloud</span>
+          <span class="partner-item" aria-hidden="true">AWS</span>
+          <span class="partner-item" aria-hidden="true">Azure AI</span>
+          <span class="partner-item" aria-hidden="true">Kubernetes</span>
+          <span class="partner-item" aria-hidden="true">Docker</span>
+          <span class="partner-item" aria-hidden="true">Python</span>
+          <span class="partner-item" aria-hidden="true">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO TIME / EQUIPE
+  =================================================== -->
+  <section class="section team" id="about" aria-label="Time da AGL Company">
+    <div class="container">
+
+      <!-- Cabeçalho -->
+      <div class="section__header reveal-up">
+        <div class="section__tag">Time</div>
+        <h2 class="section__title">Nosso Time</h2>
+        <p class="section__subtitle">As mentes por trás da AGL — pessoas reais, construindo o futuro da IA.</p>
+      </div>
+
+      <!-- ── Membro destaque (Fundador) ────────────────── -->
+      <div class="team__founder reveal-up" data-delay="100">
+
+        <!-- ===== FOTO DO MEMBRO: SUBSTITUIR AQUI ===== -->
+        <!-- Substituir o bloco .team-avatar abaixo por:
+             <img src="assets/team/vinicius.jpg" alt="Vinicius Ferreira" class="team__founder-img"> -->
+        <div class="team-avatar team-avatar--founder" aria-hidden="true">
+          <span>VF</span>
+          <div class="team-avatar__ring" aria-hidden="true"></div>
+        </div>
+        <!-- ===== FIM FOTO VINICIUS ===== -->
+
+        <div class="team__founder-info">
+          <div class="team__founder-badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Co-fundador &amp; CEO
+          </div>
+          <h3 class="team__founder-name">Vinicius Ferreira</h3>
+          <!-- Descrição editável — altere o texto abaixo -->
+          <p class="team__founder-desc">
+            Visionário apaixonado por tecnologia e inovação. Lidera a AGL Company com foco em
+            transformar inteligência artificial em soluções reais que geram impacto nos negócios.
+          </p>
+          <div class="team__founder-links">
+            <a href="https://github.com/VotioYou" class="team-social" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub de Vinicius Ferreira">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Grid de membros ─────────────────────────── -->
+      <div class="team__grid">
+
+        <!-- ─── Rafael Bonfim ─── -->
+        <article class="team-card reveal-up" data-delay="0" id="memberRafael">
+          <div class="team-card__photo-wrapper">
+            <!-- ===== FOTO DO MEMBRO: SUBSTITUIR AQUI ===== -->
+            <!-- Substituir por: <img src="assets/team/rafael.jpg" alt="Rafael Bonfim" class="team-card__photo"> -->
+            <div class="team-avatar" aria-hidden="true"><span>RB</span></div>
+            <!-- ===== FIM FOTO RAFAEL ===== -->
+            <div class="team-card__photo-glow" aria-hidden="true"></div>
+          </div>
+          <div class="team-card__body">
+            <!-- Cargo editável -->
+            <span class="team-card__role">Co-fundador &amp; CTO</span>
+            <!-- Nome editável -->
+            <h3 class="team-card__name">Rafael Bonfim</h3>
+            <!-- Descrição editável — altere o texto abaixo -->
+            <p class="team-card__desc">
+              Arquiteto de sistemas e especialista em MLOps. Responsável pela infraestrutura técnica
+              e pelos modelos de IA que sustentam os produtos da AGL.
+            </p>
+            <div class="team-card__links">
+              <a href="https://github.com/bonfim157" class="team-social" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub de Rafael Bonfim">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── Bianca Stefani ─── -->
+        <article class="team-card reveal-up" data-delay="100" id="memberBianca">
+          <div class="team-card__photo-wrapper">
+            <!-- ===== FOTO DO MEMBRO: SUBSTITUIR AQUI ===== -->
+            <!-- Substituir por: <img src="assets/team/bianca.jpg" alt="Bianca Stefani" class="team-card__photo"> -->
+            <div class="team-avatar team-avatar--pink" aria-hidden="true"><span>BS</span></div>
+            <!-- ===== FIM FOTO BIANCA ===== -->
+            <div class="team-card__photo-glow team-card__photo-glow--pink" aria-hidden="true"></div>
+          </div>
+          <div class="team-card__body">
+            <!-- Cargo editável -->
+            <span class="team-card__role">Head of Design &amp; UX</span>
+            <!-- Nome editável -->
+            <h3 class="team-card__name">Bianca Stefani</h3>
+            <!-- Descrição editável — altere o texto abaixo -->
+            <p class="team-card__desc">
+              Designer apaixonada por criar experiências que simplificam o complexo.
+              Responsável pela identidade visual e pela experiência do usuário nos produtos AGL.
+            </p>
+            <div class="team-card__links">
+              <a href="https://github.com/BiahBianca" class="team-social" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub de Bianca Stefani">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── Kaio Barbosa ─── -->
+        <article class="team-card reveal-up" data-delay="200" id="memberKaio">
+          <div class="team-card__photo-wrapper">
+            <!-- ===== FOTO DO MEMBRO: SUBSTITUIR AQUI ===== -->
+            <!-- Substituir por: <img src="assets/team/kaio.jpg" alt="Kaio Barbosa" class="team-card__photo"> -->
+            <div class="team-avatar team-avatar--cyan" aria-hidden="true"><span>KB</span></div>
+            <!-- ===== FIM FOTO KAIO ===== -->
+            <div class="team-card__photo-glow team-card__photo-glow--cyan" aria-hidden="true"></div>
+          </div>
+          <div class="team-card__body">
+            <!-- Cargo editável -->
+            <span class="team-card__role">Engenheiro de IA</span>
+            <!-- Nome editável -->
+            <h3 class="team-card__name">Kaio Barbosa</h3>
+            <!-- Descrição editável — altere o texto abaixo -->
+            <p class="team-card__desc">
+              Especialista em modelos de linguagem e redes neurais. Transforma
+              pesquisa acadêmica em soluções de ML robustas e prontas para produção.
+            </p>
+            <div class="team-card__links">
+              <a href="https://github.com/KaioBarbosa030" class="team-social" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub de Kaio Barbosa">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── João Pedro ─── -->
+        <article class="team-card reveal-up" data-delay="300" id="memberJoao">
+          <div class="team-card__photo-wrapper">
+            <!-- ===== FOTO DO MEMBRO: SUBSTITUIR AQUI ===== -->
+            <!-- Substituir por: <img src="assets/team/joao.jpg" alt="João Pedro" class="team-card__photo"> -->
+            <div class="team-avatar team-avatar--green" aria-hidden="true"><span>JP</span></div>
+            <!-- ===== FIM FOTO JOÃO ===== -->
+            <div class="team-card__photo-glow team-card__photo-glow--green" aria-hidden="true"></div>
+          </div>
+          <div class="team-card__body">
+            <!-- Cargo editável -->
+            <span class="team-card__role">Desenvolvedor Full-Stack</span>
+            <!-- Nome editável -->
+            <h3 class="team-card__name">João Pedro</h3>
+            <!-- Descrição editável — altere o texto abaixo -->
+            <p class="team-card__desc">
+              Desenvolve as interfaces e APIs que conectam os modelos de IA aos
+              usuários finais. Especialista em performance e arquitetura de software escalável.
+            </p>
+            <div class="team-card__links">
+              <a href="https://github.com/mikazin1" class="team-social" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub de João Pedro">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /.team__grid -->
+    </div>
+  </section>
+
+
+  <div class="container">
+    <div class="about__grid">
+      <!-- Coluna visual -->
+      <div class="about__visual reveal-left">
+        <div class="about__card-wrapper">
+          <div class="about__card">
+            <div class="about__card-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path
+                  d="M14 4C18.4183 4 22 7.58172 22 12V16C22 20.4183 18.4183 24 14 24C9.58172 24 6 20.4183 6 16V12C6 7.58172 9.58172 4 14 4Z"
+                  stroke="url(#g1)" stroke-width="1.5" />
+                <circle cx="14" cy="14" r="3" fill="url(#g1)" />
+                <defs>
+                  <linearGradient id="g1" x1="6" y1="4" x2="22" y2="24" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#6C63FF" />
+                    <stop offset="1" stop-color="#00D4FF" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div>
+              <h3>IA Proprietária</h3>
+              <p>Modelos treinados com dados do seu setor</p>
+            </div>
+          </div>
+          <div class="about__card about__card--offset">
+            <div class="about__card-icon about__card-icon--alt" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M8 20L14 8L20 20M10.5 16.5H17.5" stroke="url(#g2)" stroke-width="1.5" stroke-linecap="round" />
+                <defs>
+                  <linearGradient id="g2" x1="8" y1="8" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FF6B6B" />
+                    <stop offset="1" stop-color="#FF9B3D" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div>
+              <h3>Analytics Avançado</h3>
+              <p>Insights em tempo real para decisões estratégicas</p>
+            </div>
+          </div>
+          <!-- Orbiting element -->
+          <div class="about__orbit" aria-hidden="true">
+            <div class="orbit__ring">
+              <div class="orbit__planet"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna de texto -->
+      <div class="about__content reveal-right">
+        <div class="section__tag">Sobre a AGL</div>
+        <h2 class="section__title">
+          Pioneiros em IA aplicada<br />
+          ao mundo dos negócios
+        </h2>
+        <p class="section__text">
+          Fundada com a missão de democratizar o acesso à inteligência artificial, a
+          AGL Company une expertise técnica profunda com visão estratégica de negócios.
+          Desenvolvemos soluções que vão além da automação — criamos sistemas inteligentes
+          que aprendem, evoluem e geram valor real.
+        </p>
+        <p class="section__text">
+          Nossa equipe é formada por pesquisadores, engenheiros e especialistas de
+          domínio que colaboram para entregar tecnologia de ponta, adaptada à
+          realidade do seu mercado.
+        </p>
+
+        <!-- Indicadores -->
+        <div class="about__indicators">
+          <div class="indicator">
+            <div class="indicator__bar">
+              <div class="indicator__fill" style="--w: 95%;" data-label="Satisfação do Cliente"></div>
+            </div>
+            <div class="indicator__meta">
+              <span>Satisfação do Cliente</span>
+              <span>95%</span>
+            </div>
+          </div>
+          <div class="indicator">
+            <div class="indicator__bar">
+              <div class="indicator__fill" style="--w: 88%;" data-label="Precisão dos Modelos"></div>
+            </div>
+            <div class="indicator__meta">
+              <span>Precisão dos Modelos</span>
+              <span>88%</span>
+            </div>
+          </div>
+          <div class="indicator">
+            <div class="indicator__bar">
+              <div class="indicator__fill" style="--w: 92%;" data-label="Redução de Custos Operacionais"></div>
+            </div>
+            <div class="indicator__meta">
+              <span>Redução de Custos</span>
+              <span>92%</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn btn--primary" id="aboutCTA">Conhecer a Equipe</a>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO SOLUÇÕES / SERVIÇOS
+  =================================================== -->
+  <section class="section services" id="services" aria-label="Soluções da AGL Company">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__tag">Soluções</div>
+        <h2 class="section__title">O que fazemos por você</h2>
+        <p class="section__subtitle">
+          Cada solução é desenhada para o seu contexto, escalável para o seu crescimento.
+        </p>
+      </div>
+
+      <div class="services__grid">
+        <!-- Card 1 -->
+        <article class="service-card reveal-up" data-delay="0" id="serviceAI">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path
+                d="M18 6C11.3726 6 6 11.3726 6 18C6 24.6274 11.3726 30 18 30C24.6274 30 30 24.6274 30 18C30 11.3726 24.6274 6 18 6Z"
+                stroke="url(#s1)" stroke-width="1.2" />
+              <path
+                d="M14 18C14 15.7909 15.7909 14 18 14C20.2091 14 22 15.7909 22 18C22 20.2091 20.2091 22 18 22C15.7909 22 14 20.2091 14 18Z"
+                fill="url(#s1)" />
+              <path d="M18 10V12M18 24V26M10 18H12M24 18H26" stroke="url(#s1)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <defs>
+                <linearGradient id="s1" x1="6" y1="6" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6C63FF" />
+                  <stop offset="1" stop-color="#00D4FF" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">IA Preditiva</h3>
+          <p class="service-card__text">
+            Modelos de machine learning que antecipam tendências, comportamentos de clientes
+            e falhas operacionais antes que aconteçam.
+          </p>
+          <ul class="service-card__list">
+            <li>Previsão de demanda</li>
+            <li>Detecção de anomalias</li>
+            <li>Análise de churn</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre IA Preditiva">Saiba mais →</a>
+          <div class="service-card__glow" aria-hidden="true"></div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="service-card reveal-up" data-delay="100" id="serviceNLP">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path
+                d="M8 12C8 9.79086 9.79086 8 12 8H24C26.2091 8 28 9.79086 28 12V20C28 22.2091 26.2091 24 24 24H20L16 28V24H12C9.79086 24 8 22.2091 8 20V12Z"
+                stroke="url(#s2)" stroke-width="1.2" />
+              <path d="M13 15H23M13 19H19" stroke="url(#s2)" stroke-width="1.2" stroke-linecap="round" />
+              <defs>
+                <linearGradient id="s2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FF6B6B" />
+                  <stop offset="1" stop-color="#FF9B3D" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Processamento de Linguagem</h3>
+          <p class="service-card__text">
+            Chatbots inteligentes, análise de sentimento e extração de informações
+            de textos não estruturados em qualquer idioma.
+          </p>
+          <ul class="service-card__list">
+            <li>Assistentes virtuais</li>
+            <li>Análise de feedbacks</li>
+            <li>Sumarização automática</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre NLP">Saiba mais →</a>
+          <div class="service-card__glow service-card__glow--orange" aria-hidden="true"></div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="service-card reveal-up" data-delay="200" id="serviceVision">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M8 14V10H14M22 8H28V14M28 22V26H22M14 28H8V22" stroke="url(#s3)" stroke-width="1.2"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="18" cy="18" r="5" stroke="url(#s3)" stroke-width="1.2" />
+              <circle cx="18" cy="18" r="2" fill="url(#s3)" />
+              <defs>
+                <linearGradient id="s3" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00D4FF" />
+                  <stop offset="1" stop-color="#7B2FBE" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Visão Computacional</h3>
+          <p class="service-card__text">
+            Sistemas que "veem" e interpretam imagens e vídeos para controle de qualidade,
+            segurança e automação industrial.
+          </p>
+          <ul class="service-card__list">
+            <li>Inspeção automatizada</li>
+            <li>Reconhecimento facial</li>
+            <li>Contagem e rastreamento</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre Visão Computacional">Saiba mais
+            →</a>
+          <div class="service-card__glow service-card__glow--cyan" aria-hidden="true"></div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="service-card reveal-up" data-delay="300" id="serviceData">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <ellipse cx="18" cy="11" rx="9" ry="4" stroke="url(#s4)" stroke-width="1.2" />
+              <path d="M9 11V18C9 20.2091 13.0294 22 18 22C22.9706 22 27 20.2091 27 18V11" stroke="url(#s4)"
+                stroke-width="1.2" />
+              <path d="M9 18V25C9 27.2091 13.0294 29 18 29C22.9706 29 27 27.2091 27 25V18" stroke="url(#s4)"
+                stroke-width="1.2" />
+              <defs>
+                <linearGradient id="s4" x1="9" y1="7" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00FF88" />
+                  <stop offset="1" stop-color="#00D4FF" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Engenharia de Dados</h3>
+          <p class="service-card__text">
+            Infraestrutura robusta de dados — pipelines, data lakes e warehouses —
+            para que seus dados estejam sempre prontos para análise.
+          </p>
+          <ul class="service-card__list">
+            <li>ETL e pipelines</li>
+            <li>Data lakehouse</li>
+            <li>Real-time streaming</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre Engenharia de Dados">Saiba mais
+            →</a>
+          <div class="service-card__glow service-card__glow--green" aria-hidden="true"></div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="service-card reveal-up" data-delay="400" id="serviceMLOps">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M12 12L18 8L24 12V20L18 24L12 20V12Z" stroke="url(#s5)" stroke-width="1.2" />
+              <path d="M18 8V6M18 24V26M12 12L10 11M24 12L26 11M12 20L10 21M24 20L26 21" stroke="url(#s5)"
+                stroke-width="1.2" stroke-linecap="round" />
+              <defs>
+                <linearGradient id="s5" x1="10" y1="6" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F72585" />
+                  <stop offset="1" stop-color="#7B2FBE" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">MLOps & Deploy</h3>
+          <p class="service-card__text">
+            Do modelo de pesquisa à produção com monitoramento, versionamento e
+            retreinamento contínuo dos seus sistemas de IA.
+          </p>
+          <ul class="service-card__list">
+            <li>CI/CD para modelos</li>
+            <li>Model monitoring</li>
+            <li>A/B testing de modelos</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre MLOps">Saiba mais →</a>
+          <div class="service-card__glow service-card__glow--pink" aria-hidden="true"></div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="service-card reveal-up" data-delay="500" id="serviceConsulting">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 9L20.5 14.5L26.5 15.5L22.5 19L23.5 25L18 22.5L12.5 25L13.5 19L9.5 15.5L15.5 14.5L18 9Z"
+                stroke="url(#s6)" stroke-width="1.2" stroke-linejoin="round" />
+              <defs>
+                <linearGradient id="s6" x1="9.5" y1="9" x2="26.5" y2="25" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFB700" />
+                  <stop offset="1" stop-color="#FF6B6B" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Consultoria Estratégica</h3>
+          <p class="service-card__text">
+            Mapeamento de oportunidades de IA no seu negócio, roadmap de implementação
+            e gestão de mudança organizacional.
+          </p>
+          <ul class="service-card__list">
+            <li>AI readiness assessment</li>
+            <li>Roadmap de IA</li>
+            <li>Treinamento de equipes</li>
+          </ul>
+          <a href="#contact" class="service-card__cta" aria-label="Saiba mais sobre Consultoria">Saiba mais →</a>
+          <div class="service-card__glow service-card__glow--yellow" aria-hidden="true"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO TECNOLOGIAS
+  =================================================== -->
+  <section class="section tech" id="tech" aria-label="Stack tecnológico">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__tag">Stack</div>
+        <h2 class="section__title">Tecnologia de ponta, aplicada com precisão</h2>
+        <p class="section__subtitle">Nossa infraestrutura é pensada para performance, segurança e escalabilidade.</p>
+      </div>
+
+      <div class="tech__layout">
+        <!-- Esquerda: diagrama -->
+        <div class="tech__diagram reveal-left" aria-hidden="true">
+          <div class="tech__core">
+            <span>AGL</span>
+            <span>CORE</span>
+          </div>
+          <div class="tech__layers">
+            <div class="tech__layer" style="--r: 90px; --spd: 18s;">
+              <div class="tech__node">ML</div>
+            </div>
+            <div class="tech__layer" style="--r: 140px; --spd: 28s; animation-direction: reverse;">
+              <div class="tech__node">API</div>
+            </div>
+            <div class="tech__layer" style="--r: 190px; --spd: 35s;">
+              <div class="tech__node">CDN</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direita: lista de tecnologias -->
+        <div class="tech__list reveal-right">
+          <div class="tech-item" id="techPython">
+            <div class="tech-item__icon" aria-hidden="true">🐍</div>
+            <div class="tech-item__info">
+              <h4>Python & Ecossistema ML</h4>
+              <p>scikit-learn, pandas, numpy, xgboost</p>
+            </div>
+            <div class="tech-item__bar">
+              <div class="tech-item__fill" style="--w:95%"></div>
+            </div>
+          </div>
+          <div class="tech-item" id="techDeep">
+            <div class="tech-item__icon" aria-hidden="true">🧠</div>
+            <div class="tech-item__info">
+              <h4>Deep Learning</h4>
+              <p>PyTorch, TensorFlow, Hugging Face</p>
+            </div>
+            <div class="tech-item__bar">
+              <div class="tech-item__fill" style="--w:90%"></div>
+            </div>
+          </div>
+          <div class="tech-item" id="techCloud">
+            <div class="tech-item__icon" aria-hidden="true">☁️</div>
+            <div class="tech-item__info">
+              <h4>Cloud & Infra</h4>
+              <p>AWS, GCP, Azure, Kubernetes, Docker</p>
+            </div>
+            <div class="tech-item__bar">
+              <div class="tech-item__fill" style="--w:88%"></div>
+            </div>
+          </div>
+          <div class="tech-item" id="techData">
+            <div class="tech-item__icon" aria-hidden="true">📊</div>
+            <div class="tech-item__info">
+              <h4>Data Engineering</h4>
+              <p>Apache Spark, Kafka, dbt, Airflow</p>
+            </div>
+            <div class="tech-item__bar">
+              <div class="tech-item__fill" style="--w:85%"></div>
+            </div>
+          </div>
+          <div class="tech-item" id="techLLM">
+            <div class="tech-item__icon" aria-hidden="true">⚡</div>
+            <div class="tech-item__info">
+              <h4>LLMs & Generative AI</h4>
+              <p>GPT-4, Gemini, Claude, RAG, Fine-tuning</p>
+            </div>
+            <div class="tech-item__bar">
+              <div class="tech-item__fill" style="--w:92%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO PLANOS
+  =================================================== -->
+  <section class="section plans" id="plans" aria-label="Planos da AGL Company">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__tag">Planos</div>
+        <h2 class="section__title">Soluções para cada estágio do seu negócio</h2>
+        <p class="section__subtitle">Sem contratos longos. Sem surpresas. Comece quando quiser, escale quando precisar.
+        </p>
+      </div>
+
+      <!-- Toggle anual/mensal -->
+      <div class="plans__toggle reveal-up" role="group" aria-label="Escolher periodicidade">
+        <button class="toggle__btn active" id="planMonthly" aria-pressed="true">Mensal</button>
+        <button class="toggle__btn" id="planAnnual" aria-pressed="false">
+          Anual
+          <span class="toggle__badge">-20%</span>
+        </button>
+      </div>
+
+      <div class="plans__grid">
+        <!-- Plano Starter -->
+        <article class="plan-card reveal-up" data-delay="0" id="planStarter">
+          <div class="plan-card__header">
+            <span class="plan-card__label">Starter</span>
+            <div class="plan-card__price">
+              <span class="price__currency">R$</span>
+              <span class="price__value" data-monthly="2.490" data-annual="1.990">2.490</span>
+              <span class="price__period">/mês</span>
+            </div>
+            <p class="plan-card__desc">Ideal para startups e pequenas empresas iniciando sua jornada com IA.</p>
+          </div>
+          <ul class="plan-card__features">
+            <li class="feature feature--yes">Até 2 modelos de IA</li>
+            <li class="feature feature--yes">10.000 inferências/mês</li>
+            <li class="feature feature--yes">Dashboard básico</li>
+            <li class="feature feature--yes">Suporte por e-mail</li>
+            <li class="feature feature--yes">API access</li>
+            <li class="feature feature--no">Modelos customizados</li>
+            <li class="feature feature--no">Fine-tuning</li>
+            <li class="feature feature--no">Suporte dedicado</li>
+          </ul>
+          <a href="#contact" class="btn btn--outline btn--full" id="cta-starter">Começar Grátis</a>
+        </article>
+
+        <!-- Plano Pro (destacado) -->
+        <article class="plan-card plan-card--featured reveal-up" data-delay="150" id="planPro">
+          <div class="plan-card__badge">Mais Popular</div>
+          <div class="plan-card__header">
+            <span class="plan-card__label">Professional</span>
+            <div class="plan-card__price">
+              <span class="price__currency">R$</span>
+              <span class="price__value" data-monthly="7.990" data-annual="6.390">7.990</span>
+              <span class="price__period">/mês</span>
+            </div>
+            <p class="plan-card__desc">Para médias empresas que precisam de IA robusta e escalável.</p>
+          </div>
+          <ul class="plan-card__features">
+            <li class="feature feature--yes">Até 10 modelos de IA</li>
+            <li class="feature feature--yes">500.000 inferências/mês</li>
+            <li class="feature feature--yes">Dashboard avançado</li>
+            <li class="feature feature--yes">Suporte prioritário</li>
+            <li class="feature feature--yes">API access ilimitado</li>
+            <li class="feature feature--yes">Modelos customizados</li>
+            <li class="feature feature--yes">Fine-tuning básico</li>
+            <li class="feature feature--no">Suporte dedicado 24/7</li>
+          </ul>
+          <a href="#contact" class="btn btn--primary btn--full" id="cta-pro">Começar Agora</a>
+        </article>
+
+        <!-- Plano Enterprise -->
+        <article class="plan-card reveal-up" data-delay="300" id="planEnterprise">
+          <div class="plan-card__header">
+            <span class="plan-card__label">Enterprise</span>
+            <div class="plan-card__price plan-card__price--custom">
+              <span class="price__custom">Sob consulta</span>
+            </div>
+            <p class="plan-card__desc">Para grandes corporações com necessidades complexas e escala global.</p>
+          </div>
+          <ul class="plan-card__features">
+            <li class="feature feature--yes">Modelos ilimitados</li>
+            <li class="feature feature--yes">Inferências ilimitadas</li>
+            <li class="feature feature--yes">Dashboard white-label</li>
+            <li class="feature feature--yes">SLA garantido 99.9%</li>
+            <li class="feature feature--yes">Infraestrutura dedicada</li>
+            <li class="feature feature--yes">Fine-tuning avançado</li>
+            <li class="feature feature--yes">Suporte dedicado 24/7</li>
+            <li class="feature feature--yes">Contrato personalizado</li>
+          </ul>
+          <a href="#contact" class="btn btn--outline btn--full" id="cta-enterprise">Falar com Especialista</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO DEPOIMENTOS
+  =================================================== -->
+  <section class="section testimonials" id="testimonials" aria-label="Depoimentos de clientes">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__tag">Depoimentos</div>
+        <h2 class="section__title">O que nossos clientes dizem</h2>
+      </div>
+
+      <div class="testimonials__grid">
+        <article class="testimonial-card reveal-up" data-delay="0">
+          <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>
+            "A AGL Company transformou completamente nossa operação. Nossa taxa de erros caiu
+            83% e a eficiência do time aumentou em 40% nos primeiros 3 meses."
+          </blockquote>
+          <footer class="testimonial-card__author">
+            <div class="author__avatar" aria-hidden="true">CM</div>
+            <div>
+              <strong>Carlos Mendes</strong>
+              <span>CTO, FinTech Nexus</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="testimonial-card testimonial-card--featured reveal-up" data-delay="150">
+          <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>
+            "O modelo de previsão de demanda que a AGL implementou gerou R$ 2,4 milhões em
+            economia no primeiro ano. ROI de 12x. Incrível."
+          </blockquote>
+          <footer class="testimonial-card__author">
+            <div class="author__avatar author__avatar--alt" aria-hidden="true">AR</div>
+            <div>
+              <strong>Amanda Rodrigues</strong>
+              <span>Head of Operations, LogiTech Brasil</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="testimonial-card reveal-up" data-delay="300">
+          <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>
+            "Profissionalismo, agilidade e resultados reais. A consultoria de AI strategy
+            da AGL nos ajudou a sair do zero ao deploy em 6 semanas."
+          </blockquote>
+          <footer class="testimonial-card__author">
+            <div class="author__avatar author__avatar--purple" aria-hidden="true">FO</div>
+            <div>
+              <strong>Felipe Oliveira</strong>
+              <span>CEO, MedScan AI</span>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SEÇÃO CONTATO
+  =================================================== -->
+  <section class="section contact" id="contact" aria-label="Contato e demonstração">
+    <div class="container">
+      <div class="contact__grid">
+        <!-- Texto lateral -->
+        <div class="contact__info reveal-left">
+          <div class="section__tag">Contato</div>
+          <h2 class="section__title">Vamos construir<br />o futuro juntos</h2>
+          <p class="section__text">
+            Agende uma demonstração sem custo e descubra como a IA pode
+            transformar o seu negócio. Nossa equipe responde em até 4 horas.
+          </p>
+
+          <div class="contact__channels">
+            <a href="mailto:contato@aglcompany.com.br" class="contact__channel" id="contactEmail">
+              <div class="channel__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M3 4H17C18.1046 4 19 4.89543 19 6V14C19 15.1046 18.1046 16 17 16H3C1.89543 16 1 15.1046 1 14V6C1 4.89543 1.89543 4 3 4Z"
+                    stroke="currentColor" stroke-width="1.2" />
+                  <path d="M1 6L10 11L19 6" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </div>
+              <div>
+                <span class="channel__label">E-mail</span>
+                <span class="channel__value">contato@aglcompany.com.br</span>
+              </div>
+            </a>
+            <a href="tel:+551199999999" class="contact__channel" id="contactPhone">
+              <div class="channel__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M6.5 4H4C2.89543 4 2 4.89543 2 6C2 12.6274 6.37258 18 12 18C13.1046 18 14 17.1046 14 16V13.5C14 12.9477 13.5523 12.5 13 12.5H11L9 14.5C8 14 6 12.5 5.5 11.5L7.5 9.5V7C7.5 6.44772 7.05228 6 6.5 6V4Z"
+                    stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <span class="channel__label">Telefone</span>
+                <span class="channel__value">+55 (11) 9999-9999</span>
+              </div>
+            </a>
+            <div class="contact__channel contact__channel--static" id="contactLocation">
+              <div class="channel__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M10 2C7.23858 2 5 4.23858 5 7C5 10.5 10 18 10 18C10 18 15 10.5 15 7C15 4.23858 12.7614 2 10 2Z"
+                    stroke="currentColor" stroke-width="1.2" />
+                  <circle cx="10" cy="7" r="2" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </div>
+              <div>
+                <span class="channel__label">Localização</span>
+                <span class="channel__value">São Paulo, Brasil</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário -->
+        <div class="contact__form-wrapper reveal-right">
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="formName">Nome completo</label>
+                <input type="text" id="formName" name="name" placeholder="João Silva" required autocomplete="name" />
+                <span class="form-error" id="errorName" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="formEmail">E-mail corporativo</label>
+                <input type="email" id="formEmail" name="email" placeholder="joao@empresa.com" required
+                  autocomplete="email" />
+                <span class="form-error" id="errorEmail" role="alert"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="formCompany">Empresa</label>
+              <input type="text" id="formCompany" name="company" placeholder="Nome da sua empresa"
+                autocomplete="organization" />
+            </div>
+            <div class="form-group">
+              <label for="formInterest">Área de interesse</label>
+              <select id="formInterest" name="interest">
+                <option value="">Selecione uma solução...</option>
+                <option value="ia-preditiva">IA Preditiva</option>
+                <option value="nlp">Processamento de Linguagem</option>
+                <option value="visao">Visão Computacional</option>
+                <option value="dados">Engenharia de Dados</option>
+                <option value="mlops">MLOps & Deploy</option>
+                <option value="consultoria">Consultoria Estratégica</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="formMessage">Mensagem</label>
+              <textarea id="formMessage" name="message" rows="4"
+                placeholder="Conte-nos sobre seu projeto ou desafio..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full btn--lg" id="formSubmit">
+              <span id="formBtnText">Agendar Demonstração</span>
+              <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12L10 17L20 7" stroke="#00FF88" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Mensagem enviada! Nossa equipe entrará em contato em breve.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       FOOTER
+  =================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div class="footer__brand">
+          <!-- ===== LOGO AQUI ===== -->
+          <!-- Substituir por <img src="assets/logo-white.svg" alt="AGL Company"> se disponível -->
+          <a href="#home" class="nav__logo footer__logo" aria-label="AGL Company">
+            <span class="logo__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="url(#footerGrad)" stroke-width="1.5" fill="none" />
+                <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="url(#footerGrad)" opacity="0.8" />
+                <circle cx="16" cy="15" r="3" fill="#fff" />
+                <defs>
+                  <linearGradient id="footerGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#6C63FF" />
+                    <stop offset="100%" stop-color="#00D4FF" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="logo__text">AGL<span class="logo__dot">.</span></span>
+          </a>
+          <p>Transformamos dados em decisões inteligentes. Tecnologia e IA para empresas que querem liderar.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/" class="social__link" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn da AGL Company">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a href="https://github.com/" class="social__link" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub da AGL Company">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="https://twitter.com/" class="social__link" target="_blank" rel="noopener noreferrer"
+              aria-label="Twitter da AGL Company">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="footer__links-group">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#about">Sobre nós</a></li>
+            <li><a href="#services">Soluções</a></li>
+            <li><a href="#tech">Tecnologias</a></li>
+            <li><a href="#testimonials">Cases</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__links-group">
+          <h4>Produtos</h4>
+          <ul>
+            <li><a href="#plans">Planos</a></li>
+            <li><a href="#contact">Demonstração</a></li>
+            <li><a href="#contact">Documentação</a></li>
+            <li><a href="#contact">Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__links-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#contact">Privacidade</a></li>
+            <li><a href="#contact">Termos de Uso</a></li>
+            <li><a href="#contact">Cookies</a></li>
+            <li><a href="#contact">LGPD</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="footerYear"></span> AGL Company. Todos os direitos reservados.</p>
+        <p>Feito com 💜 no Brasil</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================
+       MODAL DE LOGIN
+  =================================================== -->
+  <div class="modal-overlay" id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+    <div class="modal" id="loginModal">
+      <button class="modal__close" id="loginClose" aria-label="Fechar modal de login">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- ===== LOGO AQUI (modal) ===== -->
+      <div class="modal__logo" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="url(#modalGrad)" stroke-width="1.5" fill="none" />
+          <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="url(#modalGrad)" opacity="0.8" />
+          <circle cx="16" cy="15" r="3" fill="#fff" />
+          <defs>
+            <linearGradient id="modalGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6C63FF" />
+              <stop offset="100%" stop-color="#00D4FF" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <h2 class="modal__title" id="loginTitle">Área do Cliente</h2>
+      <p class="modal__subtitle">Acesse sua conta AGL Company</p>
+
+      <!-- Tabs: Login / Cadastro -->
+      <div class="modal__tabs" role="tablist">
+        <button class="modal__tab active" id="tabLogin" role="tab" aria-selected="true"
+          aria-controls="panelLogin">Entrar</button>
+        <button class="modal__tab" id="tabRegister" role="tab" aria-selected="false"
+          aria-controls="panelRegister">Cadastrar</button>
+      </div>
+
+      <!-- Painel de Login -->
+      <div class="modal__panel" id="panelLogin" role="tabpanel" aria-labelledby="tabLogin">
+        <form class="modal__form" id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">E-mail</label>
+            <input type="email" id="loginEmail" name="email" placeholder="seu@email.com" required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Senha</label>
+            <div class="input-password">
+              <input type="password" id="loginPassword" name="password" placeholder="••••••••" required
+                autocomplete="current-password" />
+              <button type="button" class="password-toggle" id="togglePassword" aria-label="Mostrar/ocultar senha">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M1 12C4 6 20 6 23 12C20 18 4 18 1 12Z" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-group form-group--inline">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" name="remember" />
+              <span>Lembrar de mim</span>
+            </label>
+            <a href="#" class="form-link" id="forgotPassword">Esqueci a senha</a>
+          </div>
+          <div class="form-error form-error--center" id="loginError" role="alert"></div>
+          <button type="submit" class="btn btn--primary btn--full" id="loginSubmit">
+            <span id="loginBtnText">Entrar</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Painel de Cadastro -->
+      <div class="modal__panel" id="panelRegister" role="tabpanel" aria-labelledby="tabRegister" hidden>
+        <form class="modal__form" id="registerForm" novalidate>
+          <div class="form-group">
+            <label for="registerName">Nome completo</label>
+            <input type="text" id="registerName" name="name" placeholder="João Silva" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">E-mail</label>
+            <input type="email" id="registerEmail" name="email" placeholder="seu@email.com" required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Senha</label>
+            <input type="password" id="registerPassword" name="password" placeholder="Mínimo 8 caracteres" required
+              autocomplete="new-password" minlength="8" />
+          </div>
+          <div class="form-group">
+            <label for="registerPasswordConfirm">Confirmar senha</label>
+            <input type="password" id="registerPasswordConfirm" name="passwordConfirm" placeholder="Repita a senha"
+              required autocomplete="new-password" />
+          </div>
+          <div class="form-error form-error--center" id="registerError" role="alert"></div>
+          <button type="submit" class="btn btn--primary btn--full" id="registerSubmit">
+            <span id="registerBtnText">Criar Conta</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Feedback pós-login -->
+      <div class="modal__success" id="loginSuccess" hidden>
+        <div class="success__icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M7 16L13 22L25 10" stroke="#00FF88" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3 id="successName">Bem-vindo de volta!</h3>
+        <p>Você está conectado à plataforma AGL.</p>
+        <button class="btn btn--primary" id="loginSuccessClose">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M3 12L9 6L15 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+
+</html>
